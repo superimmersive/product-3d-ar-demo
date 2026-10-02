@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>View in AR | Concept demo by Superimmersive</title>
+  <link rel="icon" type="image/svg+xml" href="images/mark.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: #f4f5f7;
+      color: #1e2a38;
+      font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+      text-align: center;
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      width: min(360px, 100%);
+      padding: 32px 24px;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 12px 30px rgba(30, 42, 56, 0.12);
+    }
+    .logo { height: 40px; }
+    h1 { font-size: 1rem; font-weight: 700; }
+    p { color: #5f6670; font-size: 0.85rem; line-height: 1.5; }
+    .actions { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: #1e2a38;
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .button img { width: 22px; height: 22px; }
+    .button--ghost { border: 1px solid #1e2a38; background: #fff; color: #1e2a38; }
+    body.is-tap { cursor: pointer; }
+    body.is-tap #open-ar { padding: 16px 24px; font-size: 1rem; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="logo" src="images/logo.svg" alt="Your Company">
+    <h1 id="title">Opening AR</h1>
+    <p id="status">Starting the AR viewer on your phone.</p>
+    <div class="actions">
+      <a class="button" id="open-ar" href="#" rel="ar" hidden>
+        <img src="images/mark.svg" alt="">
+        <span>Open in AR</span>
+      </a>
+      <a class="button button--ghost" id="open-3d" href="index.html">View in 3D instead</a>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var params = new URLSearchParams(location.search);
+      var id = params.get("m") || "";
+      var name = params.get("t") || "3D model";
+      var title = document.getElementById("title");
+      var status = document.getElementById("status");
+      var openAr = document.getElementById("open-ar");
+      var open3d = document.getElementById("open-3d");
+
+      if (!/^[a-z0-9-]+$/.test(id)) {
+        title.textContent = "Model not found";
+        status.textContent = "This scan code does not point to a known product.";
+        return;
+      }
+
+      var pageUrl = new URL("index.html#3d=" + id, location.href).href;
+      var MODEL_VERSION = "1";
+      var glbUrl = new URL("models/" + id + ".glb?v=" + MODEL_VERSION, location.href).href;
+      var usdzUrl = new URL("models/" + id + ".usdz?v=" + MODEL_VERSION, location.href).href;
+      open3d.href = pageUrl;
+      title.textContent = name;
+
+      var ua = navigator.userAgent;
+      var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      var isAndroid = /Android/i.test(ua);
+
+      if (isIOS) {
+        openAr.href = usdzUrl;
+        openAr.hidden = false;
+        status.textContent = "Tap anywhere to place it in your space.";
+        document.body.classList.add("is-tap");
+        document.body.addEventListener("click", function (event) {
+          if (event.target.closest("a")) return;
+          openAr.click();
+        });
+        try {
+          openAr.click();
+        } catch (err) {}
+        return;
+      }
+
+      if (isAndroid) {
+        var sceneViewer = "intent://arvr.google.com/scene-viewer/1.2"
+          + "?file=" + encodeURIComponent(glbUrl)
+          + "&mode=ar_preferred"
+          + "&title=" + encodeURIComponent(name)
+          + "&resizable=true"
+          + "#Intent;scheme=https;package=com.google.android.googlequicksearchbox;"
+          + "action=android.intent.action.VIEW;"
+          + "S.browser_fallback_url=" + encodeURIComponent(pageUrl) + ";end;";
+        openAr.removeAttribute("rel");
+        openAr.href = sceneViewer;
+        openAr.hidden = false;
+        status.textContent = "If AR does not open, tap Open in AR.";
+        location.replace(sceneViewer);
+        return;
+      }
+
+      status.textContent = "AR needs a phone or tablet. Opening the 3D view instead.";
+      location.replace(pageUrl);
+    })();
+  </script>
+</body>
+</html>

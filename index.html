@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Products in 3D and AR | Concept demo by Superimmersive</title>
+  <meta name="description" content="A concept product catalogue where every product can be rotated in 3D and placed in your space with augmented reality.">
+  <meta property="og:title" content="Products in 3D and AR">
+  <meta property="og:description" content="Rotate industrial products in 3D and place them in your space with AR. A concept demo by Superimmersive.">
+  <meta property="og:image" content="images/products/slurry-pump.webp">
+  <link rel="icon" type="image/svg+xml" href="images/mark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a class="navbar__logo" href="#top"><img src="images/logo.svg" alt="Your Company"></a>
+
+      <button class="navbar__toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+
+      <ul class="navbar__links">
+        <li><a href="#top">Home</a></li>
+        <li><a href="#products" class="is-active">Products</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">3D &amp; AR</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero__inner">
+        <div class="hero__copy">
+          <p class="eyebrow">Mining &amp; processing equipment</p>
+          <h1>See the part before you order it.</h1>
+          <p>Every product in this catalogue can be turned, zoomed and placed full size on your workshop floor, straight from a phone or laptop.</p>
+          <div class="hero__actions">
+            <a class="button" href="#products">Browse products</a>
+            <button type="button" class="button button--ghost" data-open-3d="slurry-pump">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z"/><path d="m3 7 9 5 9-5M12 12v10"/></svg>
+              Try it in 3D
+            </button>
+          </div>
+        </div>
+        <div class="hero__media">
+          <img src="images/products/slurry-pump.webp" alt="Horizontal slurry pump" width="900" height="874">
+        </div>
+      </div>
+    </section>
+
+    <section class="rows" id="services">
+      <div class="rows__inner">
+        <div class="rows__col">
+          <h5>New components</h5>
+          <p>Wear parts, drive components and process equipment, built to fit the machines already on your site.</p>
+          <h5>Rebuilds and exchange units</h5>
+          <p>Send in the worn unit and take a rebuilt one off the shelf, so a failure costs hours, not weeks.</p>
+        </div>
+        <div class="rows__col">
+          <h5>Why buyers like it</h5>
+          <ul>
+            <li>Check fit and clearances in 3D before ordering</li>
+            <li>Place the part full size on site with AR</li>
+            <li>Share one link with the engineer, buyer and site manager</li>
+            <li>No app to install, works in the phone browser</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="products" id="products">
+      <div class="products__inner">
+        <div class="section-head">
+          <h2>Products</h2>
+          <p>Items marked <span class="tag">3D</span> open in an interactive viewer and in AR.</p>
+        </div>
+        <div class="products__grid">
+          <figure class="product has-model" data-product="slurry-pump" data-model="models/slurry-pump.glb?v=1" data-usdz="models/slurry-pump.usdz?v=1" data-orbit="40deg 70deg auto" data-title="Horizontal Slurry Pump">
+            <button type="button" class="product__media" aria-label="View Horizontal Slurry Pump in 3D">
+              <img src="images/products/slurry-pump.webp" alt="Horizontal slurry pump" loading="lazy">
+              <span class="product__badge" aria-hidden="true">3D</span>
+            </button>
+            <figcaption>Horizontal Slurry Pump<small>150 mm discharge, rubber lined</small></figcaption>
+            <button type="button" class="product__view">View 3D</button>
+          </figure>
+          <figure class="product has-model" data-product="hydrocyclone" data-model="models/hydrocyclone.glb?v=1" data-usdz="models/hydrocyclone.usdz?v=1" data-orbit="30deg 78deg auto" data-title="Hydrocyclone">
+            <button type="button" class="product__media" aria-label="View Hydrocyclone in 3D">
+              <img src="images/products/hydrocyclone.webp" alt="Hydrocyclone" loading="lazy">
+              <span class="product__badge" aria-hidden="true">3D</span>
+            </button>
+            <figcaption>Hydrocyclone<small>380 mm body, polyurethane liner</small></figcaption>
+            <button type="button" class="product__view">View 3D</button>
+          </figure>
+          <figure class="product has-model" data-product="planetary-gearbox" data-model="models/planetary-gearbox.glb?v=1" data-usdz="models/planetary-gearbox.usdz?v=1" data-orbit="135deg 72deg auto" data-title="Planetary Final Drive">
+            <button type="button" class="product__media" aria-label="View Planetary Final Drive in 3D">
+              <img src="images/products/planetary-gearbox.webp" alt="Planetary final drive" loading="lazy">
+              <span class="product__badge" aria-hidden="true">3D</span>
+            </button>
+            <figcaption>Planetary Final Drive<small>Two-stage, flange mounted</small></figcaption>
+            <button type="button" class="product__view">View 3D</button>
+          </figure>
+          <figure class="product">
+            <img src="images/products/hydraulic-cylinder.webp" alt="Hydraulic cylinder" loading="lazy">
+            <figcaption>Hydraulic Cylinder<small>Double acting, clevis ends</small></figcaption>
+          </figure>
+          <figure class="product">
+            <img src="images/products/idler-roller.webp" alt="Conveyor idler roller" loading="lazy">
+            <figcaption>Conveyor Idler Roller<small>127 mm shell, sealed bearings</small></figcaption>
+          </figure>
+          <figure class="product">
+            <img src="images/products/wear-liner.webp" alt="Mill wear liner" loading="lazy">
+            <figcaption>Mill Wear Liner<small>Rubber composite, steel insert</small></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="how" id="how">
+      <div class="how__inner">
+        <h2>How the 3D and AR works</h2>
+        <ol class="how__steps">
+          <li>
+            <span class="how__num">1</span>
+            <h3>Open in 3D</h3>
+            <p>Tap a product marked 3D. Drag to rotate, pinch or scroll to zoom. Works on any modern browser.</p>
+          </li>
+          <li>
+            <span class="how__num">2</span>
+            <h3>View in AR</h3>
+            <p>On a phone, View in AR places the product full size in the room. iPhone uses Quick Look, Android uses Scene Viewer.</p>
+          </li>
+          <li>
+            <span class="how__num">3</span>
+            <h3>Scan from a laptop</h3>
+            <p>On a desktop, View in AR shows a QR code. Scan it and the phone opens straight into AR.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="pitch">
+      <div class="pitch__inner">
+        <div>
+          <p class="eyebrow">Concept demo by Superimmersive</p>
+          <h2>Want this for your products?</h2>
+          <p>Send us CAD files or photos of one product. We'll turn it into a 3D and AR model on your own product page, so your buyers can see it before they order.</p>
+        </div>
+        <div class="pitch__actions">
+          <a class="button" href="mailto:devon@superimmersive.io?subject=3D%20and%20AR%20for%20our%20products">Email Superimmersive</a>
+          <a class="button button--ghost-light" href="https://superimmersive.io/" target="_blank" rel="noopener">superimmersive.io</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="footer__content">
+      <div class="footer__brand">
+        <img src="images/logo-light.svg" alt="Your Company">
+        <p>Your logo, colours, products and contact details go here.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Quick links</h4>
+        <ul>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#how">3D &amp; AR</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Head office</h4>
+        <p>Your street address</p>
+        <p>City, Province</p>
+        <p>+27 00 000 0000</p>
+        <p>sales@example.com</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; Your Company. Sample content for demonstration only.</span>
+    </div>
+  </footer>
+
+  <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-title" hidden>
+    <div class="viewer__backdrop" data-close></div>
+    <div class="viewer__panel">
+      <header class="viewer__head">
+        <h3 id="viewer-title"></h3>
+        <button type="button" class="viewer__close" data-close aria-label="Close">&times;</button>
+      </header>
+      <div class="viewer__stage">
+        <div class="viewer__load" role="status" aria-live="polite">
+          <span class="viewer__spin" aria-hidden="true"></span>
+          <span>Loading model</span>
+        </div>
+        <div class="viewer__qr" hidden>
+          <div class="viewer__qr-card">
+            <button type="button" class="viewer__qr-close" aria-label="Close scan code">&times;</button>
+            <p class="viewer__qr-title">Scan with your phone</p>
+            <canvas width="220" height="220"></canvas>
+            <p class="viewer__qr-note">Opens this model in AR on your phone, ready to place in your space.</p>
+            <p class="viewer__qr-url"></p>
+          </div>
+        </div>
+      </div>
+      <footer class="viewer__bar">
+        <p class="viewer__hint">Drag to rotate. Scroll or pinch to zoom.</p>
+        <button type="button" class="viewer__ar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z"/><path d="m3 7 9 5 9-5M12 12v10"/></svg>
+          <span>View in AR</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+
+  <aside class="demo-banner" role="note">
+    <span>Concept demo by <strong>Superimmersive</strong>. Your logo, colours and products go here.</span>
+    <button type="button" class="demo-banner__close" aria-label="Hide notice">&times;</button>
+  </aside>
+
+  <script src="js/main.js"></script>
+  <script src="js/qrcode.min.js"></script>
+  <script src="js/viewer.js"></script>
+</body>
+</html>

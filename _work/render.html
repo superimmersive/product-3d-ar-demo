@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    html, body { margin: 0; background: transparent; }
+    model-viewer { width: 100vw; height: 100vh; background: transparent; --poster-color: transparent; }
+  </style>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+</head>
+<body>
+  <model-viewer id="mv" environment-image="neutral" exposure="1.05" tone-mapping="aces" shadow-intensity="0.9" shadow-softness="0.8" interaction-prompt="none"><div slot="progress-bar"></div></model-viewer>
+  <script>
+    var params = new URLSearchParams(location.search);
+    var mv = document.getElementById("mv");
+    mv.setAttribute("camera-orbit", params.get("orbit") || "35deg 70deg auto");
+    mv.addEventListener("load", function () {
+      setTimeout(function () { document.title = "ready"; }, 600);
+    });
+    mv.setAttribute("src", "../models/" + params.get("m") + ".glb");
+  </script>
+</body>
+</html>

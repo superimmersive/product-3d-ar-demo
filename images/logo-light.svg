@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" role="img" aria-label="Your Company">
+  <path d="M24 3 42 13.5v21L24 45 6 34.5v-21L24 3Z" fill="#ffffff"/>
+  <path d="M24 12.5 33.5 18v11L24 34.5 14.5 29V18L24 12.5Z" fill="none" stroke="#f2a900" stroke-width="3.5" stroke-linejoin="round"/>
+  <text x="54" y="22" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="2.4" fill="#ffffff">YOUR</text>
+  <text x="54" y="40" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="2.4" fill="#ffffff">COMPANY</text>
+</svg>
