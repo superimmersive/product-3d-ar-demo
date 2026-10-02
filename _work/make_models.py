@@ -176,33 +176,6 @@ def hydrocyclone():
     return m
 
 
-def planetary_gearbox():
-    m = Model()
-    m.add("paint", *disc(0.13, -0.16, 0.0))
-    m.add("steel", *ring(0.0, 0.17, 0.0, 0.03))
-    m.add("paint", *disc(0.31, 0.03, 0.06))
-    m.add("accent", *lathe([(0.28, 0.06), (0.28, 0.28)]))
-    for k in range(12):
-        a = 2 * math.pi * k / 12
-        rib = place(box(0.03, 0.22, 0.03), rot_y(-a), (0.285 * math.cos(a), 0.17, 0.285 * math.sin(a)))
-        m.add("accent", *rib)
-    m.add("steel", *disc(0.36, 0.28, 0.32))
-    bolt_circle(m, "steel", 18, 0.335, 0.32, 0.34, 0.014)
-    m.add("paint", *lathe([(0.26, 0.32), (0.26, 0.4), (0.2, 0.42), (0.0, 0.42)]))
-    bolt_circle(m, "steel", 10, 0.235, 0.4, 0.415, 0.011)
-    m.add("steel", *disc(0.16, 0.42, 0.47))
-    m.add("steel", *disc(0.22, 0.47, 0.5))
-    bolt_circle(m, "steel", 10, 0.19, 0.5, 0.56, 0.012)
-    m.add("rubber", *disc(0.06, 0.5, 0.52))
-    model = Model()
-    for name, (p, n, i) in m.merged().items():
-        model.add(name, *place((p, n, i), AXIS_X))
-    foot = place(box(0.5, 0.06, 0.62), at=(0.12, -0.39, 0))
-    model.add("paint", *foot)
-    model.settle()
-    return model
-
-
 def slurry_pump():
     m = Model()
     m.add("paint", *place(box(1.1, 0.08, 0.5), at=(0, 0.04, 0)))
@@ -273,14 +246,13 @@ def wear_liner():
 
 MODELS = {
     "hydrocyclone": hydrocyclone,
-    "planetary-gearbox": planetary_gearbox,
     "slurry-pump": slurry_pump,
     "hydraulic-cylinder": hydraulic_cylinder,
     "idler-roller": idler_roller,
     "wear-liner": wear_liner,
 }
 
-AR_MODELS = {"hydrocyclone", "planetary-gearbox", "slurry-pump"}
+AR_MODELS = {"hydrocyclone", "slurry-pump"}
 
 
 # --- Writers ----------------------------------------------------------------
