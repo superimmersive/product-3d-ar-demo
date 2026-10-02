@@ -271,6 +271,8 @@
       mv.setAttribute("src", host.getAttribute("data-hero-model"));
       mv.setAttribute("alt", poster ? poster.alt + " 3D model" : "3D model");
       mv.setAttribute("camera-orbit", host.getAttribute("data-orbit") || DEFAULT_ORBIT);
+      mv.setAttribute("min-camera-orbit", "auto 66deg auto");
+      mv.setAttribute("max-camera-orbit", "auto 80deg auto");
       mv.setAttribute("camera-controls", "");
       mv.setAttribute("disable-zoom", "");
       mv.setAttribute("disable-pan", "");
