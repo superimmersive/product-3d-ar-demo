@@ -226,12 +226,44 @@ main {
   margin-top: 28px;
 }
 
+.hero__media {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  aspect-ratio: 1 / 0.9;
+}
+
 .hero__media img {
   width: 100%;
-  max-width: 560px;
-  height: auto;
-  margin: 0 auto;
+  height: 100%;
+  object-fit: contain;
   filter: drop-shadow(0 30px 30px rgba(30, 42, 56, 0.18));
+  transition: opacity 0.4s ease;
+}
+
+.hero__model {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  cursor: grab;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  --poster-color: transparent;
+}
+
+.hero__model:active {
+  cursor: grabbing;
+}
+
+.hero__media.is-live img {
+  opacity: 0;
+}
+
+.hero__media.is-live .hero__model {
+  opacity: 1;
 }
 
 /* Service rows */
@@ -933,8 +965,8 @@ body.has-viewer {
     padding: 40px 24px 48px;
   }
 
-  .hero__media img {
-    max-width: 380px;
+  .hero__media {
+    max-width: 420px;
   }
 
   .rows__inner {

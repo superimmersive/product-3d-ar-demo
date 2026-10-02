@@ -257,6 +257,46 @@
     });
   });
 
+  function initHeroModel() {
+    var host = document.querySelector("[data-hero-model]");
+    if (!host) return;
+    var connection = navigator.connection;
+    if (connection && connection.saveData) return;
+    var poster = host.querySelector("img");
+    var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    loadModelViewer().then(function () {
+      var mv = document.createElement("model-viewer");
+      mv.className = "hero__model";
+      mv.setAttribute("src", host.getAttribute("data-hero-model"));
+      mv.setAttribute("alt", poster ? poster.alt + " 3D model" : "3D model");
+      mv.setAttribute("camera-orbit", host.getAttribute("data-orbit") || DEFAULT_ORBIT);
+      mv.setAttribute("camera-controls", "");
+      mv.setAttribute("disable-zoom", "");
+      mv.setAttribute("disable-pan", "");
+      mv.setAttribute("touch-action", "pan-y");
+      mv.setAttribute("interaction-prompt", "none");
+      mv.setAttribute("environment-image", "neutral");
+      mv.setAttribute("exposure", "1.05");
+      mv.setAttribute("tone-mapping", "aces");
+      mv.setAttribute("shadow-intensity", "0.9");
+      mv.setAttribute("shadow-softness", "0.8");
+      if (!still) {
+        mv.setAttribute("auto-rotate", "");
+        mv.setAttribute("auto-rotate-delay", "0");
+        mv.setAttribute("rotation-per-second", "14deg");
+      }
+      mv.innerHTML = '<div slot="progress-bar"></div>';
+      mv.addEventListener("load", function () {
+        host.classList.add("is-live");
+      });
+      host.appendChild(mv);
+    }).catch(function () {});
+  }
+
+  if (document.readyState === "complete") initHeroModel();
+  else window.addEventListener("load", initHeroModel);
+
   var match = location.hash.match(/^#3d=(.+)$/);
   if (match) openById(decodeURIComponent(match[1]), true);
 })();
