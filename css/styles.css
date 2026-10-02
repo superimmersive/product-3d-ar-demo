@@ -434,7 +434,7 @@ main {
 }
 
 .has-model:hover .product__view,
-.has-model:focus-within .product__view {
+.has-model:has(:focus-visible) .product__view {
   opacity: 1;
   transform: translate(-50%, 0);
 }
