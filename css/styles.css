@@ -560,10 +560,9 @@ main {
 }
 
 .pitch__inner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+  align-items: center;
   gap: 28px 48px;
   max-width: 1200px;
   margin: 0 auto;
@@ -594,7 +593,28 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 36px;
+  margin-top: 28px;
+}
+
+.pitch__media {
+  position: relative;
+  width: 80%;
+  margin-inline: auto;
+  aspect-ratio: 1 / 1.15;
+}
+
+.pitch__model {
+  position: absolute;
+  inset: -8% -6%;
+  width: auto;
+  height: auto;
+  background: transparent;
+  cursor: grab;
+  --poster-color: transparent;
+}
+
+.pitch__model:active {
+  cursor: grabbing;
 }
 
 /* Footer */
@@ -606,7 +626,7 @@ main {
 
 .footer__content {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 1fr auto;
   gap: 32px;
   max-width: 1200px;
   margin: 0 auto;
@@ -1003,6 +1023,15 @@ body.has-viewer {
   .rows__inner {
     flex-direction: column;
     gap: 24px;
+  }
+
+  .pitch__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .pitch__media {
+    max-width: 420px;
+    margin: 0 auto;
   }
 
   .how__steps {

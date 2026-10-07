@@ -272,47 +272,50 @@
     });
   });
 
-  function initHeroModel() {
-    var host = document.querySelector("[data-hero-model]");
-    if (!host) return;
-    var connection = navigator.connection;
-    if (connection && connection.saveData) return;
+  function mountSpinModel(host) {
     var poster = host.querySelector("img");
     var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var mv = document.createElement("model-viewer");
+    mv.className = host.getAttribute("data-model-class") || "hero__model";
+    mv.setAttribute("src", host.getAttribute("data-spin-model"));
+    mv.setAttribute("alt", poster ? poster.alt + " 3D model" : host.getAttribute("aria-label") || "3D model");
+    mv.setAttribute("camera-orbit", host.getAttribute("data-orbit") || DEFAULT_ORBIT);
+    mv.setAttribute("min-camera-orbit", "auto 66deg auto");
+    mv.setAttribute("max-camera-orbit", "auto 80deg auto");
+    mv.setAttribute("camera-controls", "");
+    mv.setAttribute("disable-zoom", "");
+    mv.setAttribute("disable-pan", "");
+    mv.setAttribute("touch-action", "pan-y");
+    mv.setAttribute("interaction-prompt", "none");
+    mv.setAttribute("environment-image", "neutral");
+    mv.setAttribute("exposure", "1.05");
+    mv.setAttribute("tone-mapping", "aces");
+    mv.setAttribute("shadow-intensity", host.classList.contains("pitch__media") ? "0" : "0.9");
+    mv.setAttribute("shadow-softness", "0.8");
+    if (!still) {
+      mv.setAttribute("auto-rotate", "");
+      mv.setAttribute("auto-rotate-delay", "0");
+      mv.setAttribute("rotation-per-second", "14deg");
+    }
+    mv.innerHTML = '<div slot="progress-bar"></div>';
+    mv.addEventListener("load", function () {
+      host.classList.add("is-live");
+    });
+    host.appendChild(mv);
+  }
 
+  function initSpinModels() {
+    var hosts = document.querySelectorAll("[data-spin-model]");
+    if (!hosts.length) return;
+    var connection = navigator.connection;
+    if (connection && connection.saveData) return;
     loadModelViewer().then(function () {
-      var mv = document.createElement("model-viewer");
-      mv.className = "hero__model";
-      mv.setAttribute("src", host.getAttribute("data-hero-model"));
-      mv.setAttribute("alt", poster ? poster.alt + " 3D model" : "3D model");
-      mv.setAttribute("camera-orbit", host.getAttribute("data-orbit") || DEFAULT_ORBIT);
-      mv.setAttribute("min-camera-orbit", "auto 66deg auto");
-      mv.setAttribute("max-camera-orbit", "auto 80deg auto");
-      mv.setAttribute("camera-controls", "");
-      mv.setAttribute("disable-zoom", "");
-      mv.setAttribute("disable-pan", "");
-      mv.setAttribute("touch-action", "pan-y");
-      mv.setAttribute("interaction-prompt", "none");
-      mv.setAttribute("environment-image", "neutral");
-      mv.setAttribute("exposure", "1.05");
-      mv.setAttribute("tone-mapping", "aces");
-      mv.setAttribute("shadow-intensity", "0.9");
-      mv.setAttribute("shadow-softness", "0.8");
-      if (!still) {
-        mv.setAttribute("auto-rotate", "");
-        mv.setAttribute("auto-rotate-delay", "0");
-        mv.setAttribute("rotation-per-second", "14deg");
-      }
-      mv.innerHTML = '<div slot="progress-bar"></div>';
-      mv.addEventListener("load", function () {
-        host.classList.add("is-live");
-      });
-      host.appendChild(mv);
+      hosts.forEach(mountSpinModel);
     }).catch(function () {});
   }
 
-  if (document.readyState === "complete") initHeroModel();
-  else window.addEventListener("load", initHeroModel);
+  if (document.readyState === "complete") initSpinModels();
+  else window.addEventListener("load", initSpinModels);
 
   var match = location.hash.match(/^#3d=(.+)$/);
   if (match) openById(decodeURIComponent(match[1]), true);
