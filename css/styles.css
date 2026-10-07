@@ -219,6 +219,10 @@ main {
   font-size: 1.05rem;
 }
 
+.hero__copy > p + p {
+  margin-top: 14px;
+}
+
 /* Sits above the model canvas's transparent overhang so the buttons stay tappable on mobile. */
 .hero__actions {
   position: relative;
@@ -304,7 +308,8 @@ main {
   font-size: 0.95rem;
 }
 
-.rows p + h5 {
+.rows p + h5,
+.rows p + p {
   margin-top: 20px;
 }
 
@@ -557,7 +562,7 @@ main {
 .pitch__inner {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 28px 48px;
   max-width: 1200px;
@@ -573,14 +578,23 @@ main {
 }
 
 .pitch p:not(.eyebrow) {
-  max-width: 600px;
+  max-width: 640px;
   color: rgba(255, 255, 255, 0.78);
+}
+
+.pitch p + p {
+  margin-top: 12px;
+}
+
+.pitch strong {
+  color: #fff;
 }
 
 .pitch__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  margin-top: 36px;
 }
 
 /* Footer */
@@ -640,7 +654,7 @@ main {
   bottom: 16px;
   z-index: 1500;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   max-width: min(440px, calc(100vw - 32px));
   padding: 10px 10px 10px 16px;
@@ -661,8 +675,17 @@ main {
   color: var(--brand-accent);
 }
 
+.demo-banner__note {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.68rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.72);
+}
+
 .demo-banner__close {
   flex-shrink: 0;
+  margin-top: 1px;
   width: 26px;
   height: 26px;
   border: 0;

@@ -15,6 +15,7 @@
   var qrCanvas = qr.querySelector("canvas");
   var qrUrl = qr.querySelector(".viewer__qr-url");
   var qrTitle = qr.querySelector(".viewer__qr-title");
+  var qrNote = qr.querySelector(".viewer__qr-note");
   var scriptPromise = null;
   var preloaded = {};
   var viewer = null;
@@ -104,10 +105,15 @@
     var dir = location.pathname.replace(/[^/]*$/, "");
     var path = dir + "ar.html?m=" + encodeURIComponent(productId) + "&t=" + encodeURIComponent(name);
     if (!isLocalHost()) return Promise.resolve(location.origin + path);
-    return fetch("/lan.json", { cache: "no-store" })
-      .then(function (res) { return res.json(); })
-      .then(function (info) { return info.origin + path; })
-      .catch(function () { return location.origin + path; });
+    return fetch(new URL("lan.json", location.href), { cache: "no-store" })
+      .then(function (res) {
+        if (!res.ok) throw new Error("no lan address");
+        return res.json();
+      })
+      .then(function (info) {
+        if (!info.origin) throw new Error("no lan address");
+        return info.origin + path;
+      });
   }
 
   function qrColour() {
@@ -121,6 +127,14 @@
     qrTitle.textContent = "Scan with your phone";
     arButton.classList.add("is-on");
     phoneUrl(currentCard.getAttribute("data-product"), currentCard.getAttribute("data-title") || "").then(function (url) {
+      var host = "";
+      try { host = new URL(url).hostname; } catch (err) {}
+      if (/^(localhost|127\.0\.0\.1)$/i.test(host)) {
+        qrTitle.textContent = "Phone cannot open this address";
+        qrUrl.textContent = "The scan code points at this computer only. Open the demo from the network address, then scan again.";
+        return;
+      }
+      qrNote.textContent = "Same Wi-Fi as this computer. The phone opens this model in AR.";
       qrUrl.textContent = url;
       if (!window.QRCode || !QRCode.toCanvas) throw new Error("QR library missing");
       QRCode.toCanvas(qrCanvas, url, {
@@ -131,7 +145,8 @@
         if (err) qrTitle.textContent = "Could not build scan code";
       });
     }).catch(function () {
-      qrTitle.textContent = "Could not build scan code";
+      qrTitle.textContent = "Phone cannot open this address";
+      qrUrl.textContent = "Start the demo with the network server, then scan again from a phone on the same Wi-Fi.";
     });
   }
 

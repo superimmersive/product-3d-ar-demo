@@ -25,12 +25,12 @@
   var banner = document.querySelector(".demo-banner");
   if (banner) {
     try {
-      if (sessionStorage.getItem("demo-banner-hidden") === "1") banner.hidden = true;
+      if (sessionStorage.getItem("demo-banner-hidden-v2") === "1") banner.hidden = true;
     } catch (err) {}
     banner.querySelector(".demo-banner__close").addEventListener("click", function () {
       banner.hidden = true;
       try {
-        sessionStorage.setItem("demo-banner-hidden", "1");
+        sessionStorage.setItem("demo-banner-hidden-v2", "1");
       } catch (err) {}
     });
   }

@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 48" role="img" aria-label="3D/AR product demo powered by Superimmersive">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 348 48" role="img" aria-label="Web 3D/AR product demo powered by Superimmersive">
   <path d="M24 3 42 13.5v21L24 45 6 34.5v-21L24 3Z" fill="#1e2a38"/>
   <path d="M24 12.5 33.5 18v11L24 34.5 14.5 29V18L24 12.5Z" fill="none" stroke="#f2a900" stroke-width="3.5" stroke-linejoin="round"/>
-  <text x="54" y="22" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="1.6" fill="#1e2a38">3D/AR PRODUCT DEMO</text>
+  <text x="54" y="22" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="1.2" fill="#1e2a38">WEB 3D/AR PRODUCT DEMO</text>
   <text x="54" y="40" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="500" letter-spacing="0.3" fill="#5f6670">powered by <tspan font-weight="800" fill="#c98c00">Superimmersive</tspan></text>
 </svg>
